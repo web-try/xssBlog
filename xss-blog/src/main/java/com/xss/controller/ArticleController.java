@@ -1,5 +1,6 @@
 package com.xss.controller;
 
+import com.xss.domain.ResponseResult;
 import com.xss.domain.entity.Article;
 import com.xss.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,10 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    @GetMapping("/list")
-    public List<Article> hello(){
-         return articleService.list();
+    @GetMapping("/hotArticleList")
+    public ResponseResult hotArticleList(){
+        ResponseResult result = articleService.hotArticleList();
+        return result;
     }
 
 }

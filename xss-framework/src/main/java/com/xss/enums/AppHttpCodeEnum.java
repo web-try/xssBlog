@@ -1,5 +1,8 @@
 package com.xss.enums;
 
+/**
+ *判断状态枚举类
+ */
 public enum AppHttpCodeEnum {
     // 成功
     SUCCESS(200,"操作成功"),

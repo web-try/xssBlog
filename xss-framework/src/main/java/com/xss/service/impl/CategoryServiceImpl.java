@@ -25,14 +25,14 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     @Autowired
     private ArticleService articleService;
 
+    /*
+     * 先去article根据status查出有正式文章的所有数据用steam流转为ID集合
+     * 再根据找出来的ID去Category取到数据
+     * 然后用Steam流筛出有没有被禁用的分类的数据
+     */
     @Override
     public ResponseResult getCategory() {
 
-        /*
-        * 先去article根据status查出有正式文章的ID
-        * 再根据找出来的ID去Category取到数据
-        * 然后用Steam流筛出有没有被禁用的分类的数据
-        */
         LambdaQueryWrapper<Article> lambdaQueryWrapper = new LambdaQueryWrapper();
         lambdaQueryWrapper.eq(Article::getStatus, SystemConstants.ARTICLE_STATUS_NORMAL);
         List<Article> list = articleService.list(lambdaQueryWrapper);

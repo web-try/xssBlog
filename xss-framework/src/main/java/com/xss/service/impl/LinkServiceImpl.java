@@ -17,7 +17,7 @@ import java.util.List;
 public class LinkServiceImpl extends ServiceImpl<LinkMapper, Link> implements LinkService {
 
     /**
-     * 友情链接的内容
+     * 友情链接的内容的实现
      */
     @Override
     public ResponseResult getAllLink() {

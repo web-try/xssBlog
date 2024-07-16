@@ -47,6 +47,7 @@ public class WebConfig implements WebMvcConfigurer {
         return converter;
     }
 
+    //mybatis puls 分页
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>>
                                                    converters) {

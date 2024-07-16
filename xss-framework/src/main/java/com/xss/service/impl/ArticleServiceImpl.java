@@ -7,6 +7,7 @@ import com.xss.domain.ResponseResult;
 import com.xss.domain.constants.SystemConstants;
 import com.xss.domain.entity.Article;
 import com.xss.domain.entity.Category;
+import com.xss.domain.vo.ArticleDateVo;
 import com.xss.domain.vo.ArticleListVo;
 import com.xss.domain.vo.HotArticleVo;
 import com.xss.domain.vo.PageVo;
@@ -74,5 +75,22 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         PageVo pageVo = new PageVo(articleListVos, articlePage.getTotal());
 
         return ResponseResult.okResult(pageVo);
+    }
+
+    /**
+     * 文章详情
+     */
+    @Override
+    public ResponseResult getArticleDetail(Long id) {
+
+        Article byId = getById(id);
+//        byId.setCategoryName(categoryService.getById(byId.getCategoryId()).getName());
+        ArticleDateVo articleDateVo = BeanCopyUtils.copyBean(byId, ArticleDateVo.class);
+        Long categoryId = articleDateVo.getCategoryId();
+        Category category = categoryService.getById(categoryId);
+        if(category != null) {
+            articleDateVo.setCategoryName(category.getName());
+        }
+        return ResponseResult.okResult(articleDateVo);
     }
 }
